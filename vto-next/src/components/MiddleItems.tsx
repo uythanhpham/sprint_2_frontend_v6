@@ -1,42 +1,69 @@
 'use client';
 
+import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import ChooseClothesModal from './ChooseClothesModal';
+import ChooseClothesButton from './ChooseClothesButton';
+
 export default function MiddleItems() {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const openPopup = () => {
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+  const handleTryOn = () => {
+    setShowPopup(false);
+  };
+
   return (
-    <div className="middle-items">
-      <div className="square">
-        <div className="item-inner">
-          Item 1
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => previewImage(e, 'item1-img')}
-          />
-          <img id="item1-img" style={{ display: 'none' }} />
+    <>
+      <div className="middle-items">
+        {/* Item 1 */}
+        <div className="square">
+          <div className="item-inner">
+            Item 1
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => previewImage(e, 'item1-img')}
+              style={{ display: 'none' }}
+            />
+            <img id="item1-img" style={{ display: 'none' }} />
+          </div>
         </div>
+
+        {/* Item 2 */}
+        <div className="square">
+          <div className="item-inner">
+            Item 2<br />(Optional)
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => previewImage(e, 'item2-img')}
+              style={{ display: 'none' }}
+            />
+            <img id="item2-img" style={{ display: 'none' }} />
+          </div>
+        </div>
+
+        {/* 👚 Choose Clothes */}
+        <ChooseClothesButton onClick={openPopup} />
       </div>
 
-      <div className="square">
-        <div className="item-inner">
-          Item 2<br />(Optional)
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => previewImage(e, 'item2-img')}
+      <AnimatePresence mode="wait">
+        {showPopup && (
+          <ChooseClothesModal
+            onClose={closePopup}
+            onTryOn={handleTryOn}
           />
-          <img id="item2-img" style={{ display: 'none' }} />
-        </div>
-      </div>
-
-      <div
-        className="square solid-border"
-        onClick={() =>
-          (window.location.href =
-            'https://uythanhpham.github.io/sprint_1_frontend_v4/index.html')
-        }
-      >
-        👚 Choose Clothes
-      </div>
-    </div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
