@@ -1,46 +1,52 @@
 'use client';
 
-import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
-interface BodyUploadProps {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-export default function BodyUpload({ onChange }: BodyUploadProps) {
+export default function BodyUpload() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const inputId = 'body-upload-input';
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const fileUrl = URL.createObjectURL(e.target.files[0]);
-      setPreviewUrl(fileUrl);
+    const file = e.target.files?.[0];
+
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setPreviewUrl(url);
+      console.log('✔ Ảnh đã chọn:', file.name);
     }
-    onChange(e);
+
+    e.target.value = '';
   };
 
   return (
     <div className="rectangle-body" id="body-box">
       <div className="body-inner">
+        <label
+          htmlFor={inputId}
+          className="w-full h-full flex justify-center items-center cursor-pointer"
+        >
+          {previewUrl ? (
+            <div className="preview-wrapper">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={previewUrl}
+                alt="Uploaded body"
+                className="object-contain w-full h-full"
+              />
+            </div>
+          ) : (
+            <span style={{ fontSize: '28px', color: 'deeppink' }}>⬆️ Upload</span>
+          )}
+
+        </label>
+
         <input
+          id={inputId}
           type="file"
           accept="image/*"
           onChange={handleChange}
-          ref={fileInputRef}
+          className="hidden"
         />
-
-        {previewUrl ? (
-          <div className="relative w-40 h-40 mt-2">
-            <Image
-              src={previewUrl}
-              alt="Uploaded body"
-              fill
-              className="object-cover rounded"
-            />
-          </div>
-        ) : (
-          <span style={{ fontSize: '28px', color: 'deeppink' }}>⬆️</span>
-        )}
       </div>
     </div>
   );

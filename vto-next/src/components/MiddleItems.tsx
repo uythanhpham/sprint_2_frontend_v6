@@ -50,7 +50,7 @@ export default function MiddleItems() {
                   />
                 </div>
               ) : (
-                <span className="text-pink-500 text-xl">⬆️ Upload</span>
+                <span className="text-pink-500 text-xl">⬆️</span>
               )}
             </label>
           </div>
@@ -78,13 +78,13 @@ export default function MiddleItems() {
                   />
                 </div>
               ) : (
-                <span className="text-pink-500 text-xl">⬆️ Upload</span>
+                <span className="text-pink-500 text-xl">⬆️</span>
               )}
             </label>
           </div>
         </div>
 
-        {/* 👚 Choose Clothes */}
+        {/* 👉 Choose Clothes */}
         <ChooseClothesButton onClick={openPopup} />
       </div>
 
