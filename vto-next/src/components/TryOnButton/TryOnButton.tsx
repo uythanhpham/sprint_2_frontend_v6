@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import '@/app/globals.css';
+import './TryOnButton.css'; // ✅ Import CSS riêng
 
 export default function TryOnButton() {
   const router = useRouter();
@@ -12,8 +12,12 @@ export default function TryOnButton() {
 
   return (
     <div className="tryon-wrapper">
-      <button className="tryon-button" onClick={handleClick}>
-        Try on Clothes
+      <button
+        className="tryon-button"
+        onClick={handleClick}
+        aria-label="Try on clothes"
+      >
+        👗 Try on Clothes
       </button>
     </div>
   );

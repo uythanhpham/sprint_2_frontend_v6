@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import FilterMenu from './FilterMenu';
-import ClothesGrid from './ClothesGrid';
-import '@/app/globals.css';
+import FilterMenu from '../FilterMenu/FilterMenu';
+import ClothesGrid from '../ClothesGrid/ClothesGrid';
+import './ChooseClothesModal.css'; // ✅ Tách riêng CSS
 
 interface ChooseClothesModalProps {
   onClose: () => void;
@@ -30,6 +30,9 @@ export default function ChooseClothesModal({ onClose }: ChooseClothesModalProps)
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      tabIndex={-1}
     >
       <motion.div
         className="modal-background"
@@ -37,7 +40,7 @@ export default function ChooseClothesModal({ onClose }: ChooseClothesModalProps)
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.3 }}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()} // Chặn click close ở phần nền
       >
         <motion.div
           className="popup-content"
@@ -46,7 +49,13 @@ export default function ChooseClothesModal({ onClose }: ChooseClothesModalProps)
           exit={{ opacity: 0, scale: 0.85 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
         >
-          <button className="popup-close" onClick={onClose}>✖</button>
+          <button
+            className="popup-close"
+            onClick={onClose}
+            aria-label="Close choose clothes modal"
+          >
+            ✖
+          </button>
 
           <div className="choose-popup-container">
             <div className="choose-popup-header">

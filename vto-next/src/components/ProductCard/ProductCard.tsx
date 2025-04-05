@@ -1,19 +1,19 @@
 'use client';
 
 import Image from 'next/image';
-import '@/app/globals.css';
+import './ProductCard.css'; // ✅ Tách riêng CSS
 
 interface ProductCardProps {
   imageUrl: string;
   alt?: string;
 }
 
-export default function ProductCard({ imageUrl, alt }: ProductCardProps) {
+export default function ProductCard({ imageUrl, alt = 'Clothing' }: ProductCardProps) {
   return (
-    <div className="product-card relative w-40 h-40">
+    <div className="product-card">
       <Image
         src={imageUrl}
-        alt={alt || 'Clothing'}
+        alt={alt}
         fill
         className="product-image object-cover rounded"
       />

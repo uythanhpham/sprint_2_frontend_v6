@@ -1,0 +1,175 @@
+/* ==== Choose Clothes Modal ==== */
+
+/* Overlay nền đen mờ */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  /* Khung nội dung modal */
+  .popup-content {
+    background: #fff;
+    padding: 0px;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  /* Nút đóng modal */
+  .popup-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    padding: 1px 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* Khung nền modal */
+  .modal-background {
+    position: relative;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    width: 1100px;
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* ==== Header của modal ==== */
+  .choose-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    flex-direction: row;
+    gap: 16px;
+  }
+  
+  /* Nhóm chứa 2 ảnh chọn quần áo */
+  .choose-popup-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transform: none;
+    width: 50%;
+  }
+  
+  /* Box ảnh */
+  .image-box {
+    width: 80px;
+    height: 100px;
+    background-color: #e1e1e1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* ==== Filter bên phải modal ==== */
+  .choose-popup-filter {
+    width: 50%;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  /* ==== Filter Menu ==== */
+  .filter-menu {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .filter-button {
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #d4d4d4;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-button.active {
+    background: linear-gradient(135deg, #6e00ff, #b300ff);
+    color: white;
+    box-shadow: 0 6px 12px rgba(110, 0, 255, 0.4);
+  }
+  
+  /* ==== Responsive Choose Clothes Modal ==== */
+  @media (max-width: 768px) {
+    .popup-content {
+      width: 95%;
+      padding: 16px;
+      max-height: 75vh;
+      overflow-y: auto;
+    }
+  
+    .modal-background {
+      width: 95vw;
+      height: auto;
+      padding: 20px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+  
+    .popup-close {
+      font-size: 22px;
+      top: 8px;
+      right: 8px;
+      padding: 4px 10px;
+    }
+  
+    .choose-popup-header {
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+  
+    .choose-popup-images {
+      transform: none;
+      justify-content: center;
+      width: 100%;
+    }
+  
+    .choose-popup-filter {
+      width: 100%;
+    }
+  
+    .image-box {
+      width: 140px;
+      height: 180px;
+    }
+  
+    .filter-menu {
+      width: 100%;
+      gap: 10px;
+    }
+  
+    .filter-button {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+  

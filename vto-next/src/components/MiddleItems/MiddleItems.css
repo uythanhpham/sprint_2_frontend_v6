@@ -1,0 +1,106 @@
+/* ==== Middle Items ==== */
+
+.middle-items {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
+  }
+  
+  /* Ô vuông chọn item */
+  .square {
+    color: #b55bee;
+    width: 220px;
+    height: 220px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 3px solid #AF60FF;
+    border-radius: 20px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(8px);
+    cursor: default;
+    overflow: hidden;
+  }
+  
+  /* Nội dung bên trong ô */
+  .item-inner {
+    width: 90%;
+    height: 85%;
+    background-color: #f5e6ff;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  /* Ô chọn file (ẩn đi, click được) */
+  input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+  }
+  
+  /* ==== Responsive Middle Items ==== */
+  @media (max-width: 768px) {
+    .middle-items {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      top: unset;
+      left: unset;
+      transform: none;
+      height: auto;
+    }
+  
+    .square {
+      width: 160px;
+      aspect-ratio: 1 / 1;
+      font-size: 14px;
+    }
+  }
+  /* ==== Choose Clothes Button ==== */
+.choose-clothes-button {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: rgba(135, 21, 135, 0.9);
+    background: #ffffff;
+    border: 2px dashed rgba(135, 21, 135, 0.6); /* 🟣 Nét đứt */
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .choose-clothes-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 24px rgba(135, 21, 135, 0.2);
+    background-color: #fdf5ff;
+    border-color: rgba(135, 21, 135, 0.9); /* hover đậm hơn */
+  }
+  
+  
+  

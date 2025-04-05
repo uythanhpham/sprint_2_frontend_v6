@@ -1,10 +1,10 @@
 'use client';
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import TryOnButton from '@/components/TryOnButton';
-import SearchBar from '@/components/SearchBar';
-import ClothesGrid from '@/components/ClothesGrid';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
+import TryOnButton from '@/components/TryOnButton/TryOnButton';
+import SearchBar from '@/components/SearchBar/SearchBar';
+import ClothesGrid from '@/components/ClothesGrid/ClothesGrid';
 import '@/app/globals.css';
 
 export default function HomePage() {

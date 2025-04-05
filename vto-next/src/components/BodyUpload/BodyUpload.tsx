@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import './BodyUpload.css'
+
 
 export default function BodyUpload() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -35,7 +37,7 @@ export default function BodyUpload() {
               />
             </div>
           ) : (
-            <span style={{ fontSize: '28px', color: 'deeppink' }}>⬆️ Upload</span>
+            <span style={{ fontSize: '28px', color: 'deeppink' }}>👆 Body</span>
           )}
 
         </label>

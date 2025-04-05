@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import FilterMenu from '@/components/FilterMenu';
-import ClothesGrid from '@/components/ClothesGrid';
+import FilterMenu from '@/components/FilterMenu/FilterMenu';
+import ClothesGrid from '@/components/ClothesGrid/ClothesGrid';
 import '@/app/globals.css';
 
 export default function ChooseClothesPopup() {

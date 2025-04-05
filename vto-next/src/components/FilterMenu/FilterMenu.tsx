@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect } from 'react';
-import '@/app/globals.css';
+import './FilterMenu.css';
 
 interface FilterMenuProps {
   selected: string;
@@ -16,18 +16,19 @@ export default function FilterMenu({
 }: FilterMenuProps) {
   const filters = ['Upper', 'Lower', 'Full-body', 'All', 'Try On'];
 
-  // ✅ Gói handleClick bằng useCallback để tránh warning
+  // ✅ Gói handleClick bằng useCallback để tránh re-create
   const handleClick = useCallback(
     (label: string) => {
-      onFilterClick(label);
-      if (label === 'Try On' && onTryOn) {
-        onTryOn(); // ✅ chỉ đóng modal, không chuyển trang
+      if (label === 'Try On') {
+        onTryOn?.(); // gọi nếu có
+      } else {
+        onFilterClick(label);
       }
     },
     [onFilterClick, onTryOn]
   );
 
-  // 🔑 Xử lý phím "x" như phím tắt đóng
+  // ✅ Keyboard shortcut: phím "x" để thử đồ
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === 'x') {
@@ -37,19 +38,21 @@ export default function FilterMenu({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleClick]); // ✅ thêm handleClick vào dependencies
+  }, [handleClick]);
 
   return (
-    <div className="filter-menu">
+    <div className="filter-menu" role="group" aria-label="Clothing filter menu">
       {filters.map((label) => {
         const isActive = selected === label;
         const btnClass = `filter-button ${isActive ? 'active' : ''}`;
+        const ariaLabel = label === 'Try On' ? 'Try on selected clothes' : `Filter by ${label}`;
 
         return (
           <button
             key={label}
             onClick={() => handleClick(label)}
             className={btnClass}
+            aria-label={ariaLabel}
           >
             {label}
           </button>
