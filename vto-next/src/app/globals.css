@@ -633,7 +633,7 @@ input[type="file"] {
   }
 
   .header .logo {
-    font-size: 48px;
+    font-size: 38px;
     /* Mobile: logo nhỏ lại nữa */
   }
 
@@ -722,4 +722,116 @@ input[type="file"] {
   .searchbar-inner {
     padding: 10px 16px;
   }
+}
+
+@media (max-width: 768px) {
+  /* Header chỉnh nhỏ chữ cho logo và nav */
+  .header .logo {
+    font-size: 36px; /* nhỏ lại nữa */
+  }
+
+  .nav-links a {
+    font-size: 18px; /* gọn hơn, vẫn dễ bấm */
+  }
+
+  /* Footer chỉnh cỡ chữ cho tiêu đề và nội dung */
+  .footer {
+    font-size: 14px;
+  }
+
+  .footer h3 {
+    font-size: 22px;
+  }
+
+  .footer p,
+  .subscribe-box input,
+  .subscribe-box button {
+    font-size: 14px;
+  }
+}
+/* Mobile medal */
+@media (max-width: 768px) {
+  .modal-background {
+    width: 95vw;               /* chiếm 95% chiều ngang */
+    height: auto;              /* cao vừa đủ, không cố định */
+    padding: 20px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .popup-content {
+    padding: 16px;
+    max-height: 75vh;          /* giới hạn chiều cao */
+    overflow-y: auto;          /* nếu nội dung dài thì cho cuộn */
+  }
+
+  .popup-close {
+    font-size: 22px;           /* to hơn cho dễ bấm */
+    top: 8px;
+    right: 8px;
+    padding: 4px 10px;
+  }
+
+  .choose-popup-header {
+    flex-direction: column;   /* ảnh + filter chuyển dọc */
+    align-items: center;
+    gap: 20px;
+  }
+
+  .choose-popup-images {
+    transform: none;
+    justify-content: center;
+  }
+
+  .choose-popup-filter {
+    transform: none;
+  }
+
+  .image-box {
+    width: 140px;
+    height: 180px;
+  }
+
+  .filter-menu {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .filter-button {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+.choose-popup-header {
+  display: flex;
+  flex-direction: row; /* sắp xếp ngang lại */
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* Nhóm chứa 2 image box */
+.choose-popup-images {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transform: none;
+  width: 50%; /* chiếm nửa bên trái */
+}
+
+/* Box ảnh nhỏ lại */
+.image-box {
+  width: 80px;
+  height: 100px;
+}
+
+/* Filter menu chiếm nửa còn lại */
+.choose-popup-filter {
+  width: 50%;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
