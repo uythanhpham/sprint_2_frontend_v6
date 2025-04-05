@@ -2,22 +2,27 @@
 
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import ChooseClothesModal from './ChooseClothesModal';
 import ChooseClothesButton from './ChooseClothesButton';
 
 export default function MiddleItems() {
   const [showPopup, setShowPopup] = useState(false);
+  const [image1Url, setImage1Url] = useState<string | null>(null);
+  const [image2Url, setImage2Url] = useState<string | null>(null);
 
-  const openPopup = () => {
-    setShowPopup(true);
-  };
+  const openPopup = () => setShowPopup(true);
+  const closePopup = () => setShowPopup(false);
 
-  const closePopup = () => {
-    setShowPopup(false);
-  };
-
-  const handleTryOn = () => {
-    setShowPopup(false);
+  const handleImageChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setImage: React.Dispatch<React.SetStateAction<string | null>>
+  ) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setImage(url);
+    }
   };
 
   return (
@@ -30,10 +35,24 @@ export default function MiddleItems() {
             <input
               type="file"
               accept="image/*"
-              onChange={(e) => previewImage(e, 'item1-img')}
+              onChange={(e) => handleImageChange(e, setImage1Url)}
               style={{ display: 'none' }}
+              id="file1"
             />
-            <img id="item1-img" style={{ display: 'none' }} />
+            <label htmlFor="file1" className="cursor-pointer block mt-2">
+              {image1Url ? (
+                <div className="relative w-32 h-32">
+                  <Image
+                    src={image1Url}
+                    alt="Uploaded item 1"
+                    fill
+                    className="object-cover rounded"
+                  />
+                </div>
+              ) : (
+                <span className="text-pink-500 text-xl">⬆️ Upload</span>
+              )}
+            </label>
           </div>
         </div>
 
@@ -44,10 +63,24 @@ export default function MiddleItems() {
             <input
               type="file"
               accept="image/*"
-              onChange={(e) => previewImage(e, 'item2-img')}
+              onChange={(e) => handleImageChange(e, setImage2Url)}
               style={{ display: 'none' }}
+              id="file2"
             />
-            <img id="item2-img" style={{ display: 'none' }} />
+            <label htmlFor="file2" className="cursor-pointer block mt-2">
+              {image2Url ? (
+                <div className="relative w-32 h-32">
+                  <Image
+                    src={image2Url}
+                    alt="Uploaded item 2"
+                    fill
+                    className="object-cover rounded"
+                  />
+                </div>
+              ) : (
+                <span className="text-pink-500 text-xl">⬆️ Upload</span>
+              )}
+            </label>
           </div>
         </div>
 
@@ -57,25 +90,9 @@ export default function MiddleItems() {
 
       <AnimatePresence mode="wait">
         {showPopup && (
-          <ChooseClothesModal
-            onClose={closePopup}
-            onTryOn={handleTryOn}
-          />
+          <ChooseClothesModal onClose={closePopup} />
         )}
       </AnimatePresence>
     </>
   );
-}
-
-function previewImage(event: React.ChangeEvent<HTMLInputElement>, imgId: string) {
-  const file = event.target.files?.[0];
-  const img = document.getElementById(imgId) as HTMLImageElement;
-  if (file && img) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      img.src = e.target?.result as string;
-      img.style.display = 'block';
-    };
-    reader.readAsDataURL(file);
-  }
 }

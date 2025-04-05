@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import '@/app/globals.css';
 
 interface FilterMenuProps {
@@ -16,13 +16,16 @@ export default function FilterMenu({
 }: FilterMenuProps) {
   const filters = ['Upper', 'Lower', 'Full-body', 'All', 'Try On'];
 
-  const handleClick = (label: string) => {
-    onFilterClick(label);
-
-    if (label === 'Try On') {
-      if (onTryOn) onTryOn(); // ✅ chỉ đóng modal, không chuyển trang
-    }
-  };
+  // ✅ Gói handleClick bằng useCallback để tránh warning
+  const handleClick = useCallback(
+    (label: string) => {
+      onFilterClick(label);
+      if (label === 'Try On' && onTryOn) {
+        onTryOn(); // ✅ chỉ đóng modal, không chuyển trang
+      }
+    },
+    [onFilterClick, onTryOn]
+  );
 
   // 🔑 Xử lý phím "x" như phím tắt đóng
   useEffect(() => {
@@ -34,7 +37,7 @@ export default function FilterMenu({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [handleClick]); // ✅ thêm handleClick vào dependencies
 
   return (
     <div className="filter-menu">

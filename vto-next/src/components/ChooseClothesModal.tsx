@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import FilterMenu from './FilterMenu';
 import ClothesGrid from './ClothesGrid';
 import '@/app/globals.css';
@@ -30,7 +31,6 @@ export default function ChooseClothesModal({ onClose }: ChooseClothesModalProps)
       transition={{ duration: 0.25 }}
       onClick={onClose}
     >
-      {/* 🌟 Khung nền trắng bao ngoài popup-content */}
       <motion.div
         className="modal-background"
         initial={{ opacity: 0, scale: 0.95 }}
@@ -51,10 +51,15 @@ export default function ChooseClothesModal({ onClose }: ChooseClothesModalProps)
           <div className="choose-popup-container">
             <div className="choose-popup-header">
               <div className="choose-popup-images">
-                <div className="image-box">
-                  <img src="/clothes/item1.jpg" alt="Selected" />
+                <div className="image-box relative w-40 h-40">
+                  <Image
+                    src="/clothes/item1.jpg"
+                    alt="Selected clothes item"
+                    fill
+                    className="object-cover rounded"
+                  />
                 </div>
-                <div className="image-box">
+                <div className="image-box flex items-center justify-center w-40 h-40 border border-dashed border-gray-300 rounded">
                   <span style={{ fontSize: '40px', opacity: 0.3 }}>🖼️➕</span>
                 </div>
               </div>
