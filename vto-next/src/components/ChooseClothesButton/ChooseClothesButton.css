@@ -6,7 +6,7 @@
     cursor: pointer;
     background: #ffffff;
     transition: all 0.3s ease;
-    height: 60px;
+    height: 16%;
     padding: 14px 32px;
     color: rgba(135, 21, 135, 0.8);
   
@@ -21,25 +21,11 @@
   /* Hover effect */
   .choose-clothes-button:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 24px rgba(135, 21, 135, 0.2);
+    box-shadow: 0 10px 24px rgba(225, 225, 225, 0.4);
     background-color: #fef6ff;
     border-color: rgba(135, 21, 135, 0.9);
   }
     
-  /* Choose clothes button */
-.choose-clothes-button {
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  cursor: pointer;
-  background: #ffff;
-  transition: all 0.3s ease;
-  height: 16%;
-}
 
-.choose-clothes-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 24px rgba(225, 225, 225, 0.4);
-}
   
   
